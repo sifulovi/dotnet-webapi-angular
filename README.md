@@ -42,3 +42,9 @@ insert into dbo.Employee values('Alex curry','IT','2020-05-01','uni.png');
 insert into dbo.Employee values('Mark curry','Support','2020-05-07','uni1.png');
 ```
 
+UI views:
+
+![Alt Text](photos/overview.gif)
+
+
+
