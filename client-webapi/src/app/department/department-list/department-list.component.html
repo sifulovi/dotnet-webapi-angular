@@ -1,0 +1,56 @@
+<!-- This is a button toggling the modal -->
+<button (click)="openModal()" class="uk-margin-small-top uk-align-right uk-button uk-button-default uk-margin-small-right" type="button" uk-toggle="target: #modal-example">
+    Create Department <span uk-icon="file-edit"></span>
+</button>
+
+<!-- This is the modal -->
+<div id="modal-example" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body">
+        <h2 class="uk-modal-title">{{modalTitle}}</h2>
+        <div class="uk-margin">
+            <label class="uk-form-label" for="form-stacked-text">Department Name</label>
+            <div class="uk-form-controls uk-margin-small-top">
+                <input [(ngModel)]="department.DepartmentName" class="uk-input" id="form-stacked-text" type="text" placeholder="Department Name...">
+            </div>
+        </div>
+
+        <p class="uk-text-right">
+            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+            <button (click)="SaveOrUpdateDept()" class="uk-button uk-button-primary " type="button">Save</button>
+        </p>
+    </div>
+</div>
+
+
+<table class="uk-table uk-table-middle uk-table-small  uk-table-divider">
+    <thead>
+    <tr>
+        <th>
+            <div class="">
+                <input class="uk-input" [(ngModel)]="filter.DepartmentId" (keyup)="filtering()" placeholder="id">
+            </div>
+            Department Id
+        </th>
+        <th>
+            <div style="display: flex; align-items: center">
+                <input class="uk-input" [(ngModel)]="filter.DepartmentName" (keyup)="filtering()" placeholder="name">
+                <span (click)="sorting('DepartmentName', true)" uk-icon="icon:download ;ratio: 2"></span>
+                <span (click)="sorting('DepartmentName', false)" uk-icon="icon:upload ;ratio: 2"></span>
+
+            </div>
+            Department Name
+        </th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of departmentList">
+        <td>{{item.DepartmentId}}</td>
+        <td>{{item.DepartmentName}}</td>
+        <td>
+            <button (click)="editDepartment(item)" uk-toggle="target: #modal-example" class="uk-button uk-button-primary">Edit</button>
+            <button (click)="deleteDept(item.DepartmentId)" class="uk-button uk-button-danger">Delete</button>
+        </td>
+    </tr>
+    </tbody>
+</table>

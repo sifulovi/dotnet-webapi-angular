@@ -1,0 +1,80 @@
+<!-- This is a button toggling the modal -->
+<button (click)="openModal()" class="uk-margin-small-top uk-align-right uk-button uk-button-default uk-margin-small-right" type="button" uk-toggle="target: #modal-example">
+    Create Employee <span uk-icon="file-edit"></span>
+</button>
+
+<!-- This is the modal -->
+<div id="modal-example" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body">
+        <h2 class="uk-modal-title">{{modalTitle}}</h2>
+        <div class="uk-child-width-1-2" uk-grid>
+            <div>
+                <div class="uk-margin">
+                    <label class="uk-form-label" for="form-name-text">Employee Name</label>
+                    <div class="uk-form-controls uk-margin-small-top">
+                        <input [(ngModel)]="employee.EmployeeName" class="uk-input" id="form-name-text" type="text" placeholder="Department Name...">
+                    </div>
+                </div>
+                <div class="uk-margin">
+                    <label class="uk-form-label" for="form-department-text">Department Name</label>
+                    <div class="uk-form-controls uk-margin-small-top">
+                        <!--                        <input [(ngModel)]="employee.Department" class="uk-input" id="form-department-text" type="text" placeholder="Department Name...">-->
+                        <select class="uk-select" id="form-department-text" [(ngModel)]="employee.Department">
+
+                            <option *ngFor="let item of Departments">{{item.DepartmentName}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="uk-margin">
+                    <label class="uk-form-label" for="form-join-text">Date of Joining</label>
+                    <div class="uk-form-controls uk-margin-small-top">
+                        <input [(ngModel)]="employee.DateOfjoining" class="uk-input" id="form-join-text" type="date" placeholder="Department Name...">
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="uk-align-right uk-text-center" uk-grid>
+                    <div class="uk-card uk-card-secondary uk-card-body">
+                        <img id="pic" class="uk-thumbnail" [src]="photoUrl">
+                        <div class="uk-margin">
+                            <div uk-form-custom>
+                                <input type=file (change)="uploadEmployee($event)" oninput="pic.src=window.URL.createObjectURL(this.files[0])">
+                                <button class="uk-button uk-button-default" type="file">Select Photo</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p class="uk-text-right">
+            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+            <button (click)="SaveOrUpdateEmployee()" class="uk-button uk-button-primary " type="button">Save</button>
+        </p>
+    </div>
+</div>
+
+
+<table class="uk-table uk-table-divider">
+    <thead>
+    <tr>
+        <th>Employee Id</th>
+        <th>Employee Name</th>
+        <th>Employee Department</th>
+        <th>Joining Date</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of employeeList">
+        <td>{{item.EmployeeId}}</td>
+        <td>{{item.EmployeeName}}</td>
+        <td>{{item.Department}}</td>
+        <td>{{item.DateOfjoining}}</td>
+        <td>
+            <button (click)="editEmployee(item)" uk-toggle="target: #modal-example" class="uk-button uk-button-primary">Edit</button>
+            <button (click)="deleteEmployee(item.EmployeeId)" class="uk-button uk-button-danger">Delete</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
