@@ -29,6 +29,8 @@
             <div class="">
                 <input class="uk-input" [(ngModel)]="filter.DepartmentId" (keyup)="filtering()" placeholder="Search by ID">
             </div>
+            <br>
+
             Department Id
         </th>
         <th>
@@ -36,8 +38,8 @@
                 <input class="uk-input" [(ngModel)]="filter.DepartmentName" (keyup)="filtering()" placeholder="Search by Name">
                 <span (click)="sorting('DepartmentName', true)" uk-icon="icon:download ;ratio: 2"></span>
                 <span (click)="sorting('DepartmentName', false)" uk-icon="icon:upload ;ratio: 2"></span>
-
             </div>
+            <br>
             Department Name
         </th>
         <th>Actions</th>
