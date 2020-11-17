@@ -27,13 +27,13 @@
     <tr>
         <th>
             <div class="">
-                <input class="uk-input" [(ngModel)]="filter.DepartmentId" (keyup)="filtering()" placeholder="id">
+                <input class="uk-input" [(ngModel)]="filter.DepartmentId" (keyup)="filtering()" placeholder="Search by ID">
             </div>
             Department Id
         </th>
         <th>
             <div style="display: flex; align-items: center">
-                <input class="uk-input" [(ngModel)]="filter.DepartmentName" (keyup)="filtering()" placeholder="name">
+                <input class="uk-input" [(ngModel)]="filter.DepartmentName" (keyup)="filtering()" placeholder="Search by Name">
                 <span (click)="sorting('DepartmentName', true)" uk-icon="icon:download ;ratio: 2"></span>
                 <span (click)="sorting('DepartmentName', false)" uk-icon="icon:upload ;ratio: 2"></span>
 
